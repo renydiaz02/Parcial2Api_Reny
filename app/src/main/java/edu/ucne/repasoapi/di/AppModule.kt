@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import edu.ucne.repasoapi.data.remote.EntidadApi
-import edu.ucne.repasoapi.data.repositories.EntidadRepository
+import edu.ucne.repasoapi.data.remote.VerboApi
+import edu.ucne.repasoapi.data.repositories.VerboRepository
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -25,17 +25,17 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideEntidadApi(moshi: Moshi) : EntidadApi {
+    fun provideEntidadApi(moshi: Moshi) : VerboApi {
         return Retrofit.Builder()
             .baseUrl("AQUI VA EL ENLACE DE LA API")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-            .create(EntidadApi::class.java)
+            .create(VerboApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideEntidadRepository(api: EntidadApi) : EntidadRepository {
-        return EntidadRepository()//api)
+    fun provideEntidadRepository(api: VerboApi) : VerboRepository {
+        return VerboRepository()//api)
     }
 }
